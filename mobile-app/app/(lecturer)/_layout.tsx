@@ -3,7 +3,7 @@ import React from 'react';
 
 import { HapticTab } from '@/components/haptic-tab';
 import { IconSymbol } from '@/components/ui/icon-symbol';
-import { MaterialCommunityIcons } from '@expo/vector-icons';
+import { FontAwesome5, FontAwesome6, MaterialCommunityIcons } from '@expo/vector-icons';
 import { Colors } from '@/constants/theme';
 import { useColorScheme } from '@/hooks/use-color-scheme';
 
@@ -21,7 +21,7 @@ export default function LecturerLayout() {
                 name="index"
                 options={{
                     title: 'Dashboard',
-                    tabBarIcon: ({ color }) => <IconSymbol size={28} name="house.fill" color={color} />,
+                    tabBarIcon: ({ color }) => <FontAwesome6 size={20} name="people-group" color={color} />,
                 }}
             />
             <Tabs.Screen
@@ -35,14 +35,14 @@ export default function LecturerLayout() {
                 name="live"
                 options={{
                     title: 'Live',
-                    tabBarIcon: ({ color }) => <IconSymbol size={28} name="video.fill" color={color} />,
+                    tabBarIcon: ({ color }) => <MaterialCommunityIcons size={28} name="progress-helper" color={color} />,
                 }}
             />
             <Tabs.Screen
                 name="reports"
                 options={{
                     title: 'Reports',
-                    tabBarIcon: ({ color }) => <IconSymbol size={28} name="chart.bar.fill" color={color} />,
+                    tabBarIcon: ({ color }) => <FontAwesome5 size={28} name="file-alt" color={color} />,
                 }}
             />
         </Tabs>

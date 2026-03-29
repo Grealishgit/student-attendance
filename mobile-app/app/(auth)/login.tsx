@@ -15,7 +15,7 @@ const LoginPage = () => {
                 <Pressable onPress={() => router.push('/(tabs)')} style={styles.studentButton}>
                     <Text style={styles.buttonText}>Student</Text>
                 </Pressable>
-                <Pressable onPress={() => router.push('/(lecturer)/index')} style={styles.lecturerButton}>
+                <Pressable onPress={() => router.navigate('/(lecturer)' as any)} style={styles.lecturerButton}>
                     <Text style={styles.buttonText}>Lecturer</Text>
                 </Pressable>
             </View>
