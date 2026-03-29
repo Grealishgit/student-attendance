@@ -3,6 +3,7 @@ import React from 'react';
 
 import { HapticTab } from '@/components/haptic-tab';
 import { IconSymbol } from '@/components/ui/icon-symbol';
+import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { Colors } from '@/constants/theme';
 import { useColorScheme } from '@/hooks/use-color-scheme';
 
@@ -27,7 +28,7 @@ export default function LecturerLayout() {
                 name="classes"
                 options={{
                     title: 'Classes',
-                    tabBarIcon: ({ color }) => <IconSymbol size={28} name="book.fill" color={color} />,
+                    tabBarIcon: ({ color }) => <MaterialCommunityIcons size={28} name="chair-school" color={color} />,
                 }}
             />
             <Tabs.Screen
