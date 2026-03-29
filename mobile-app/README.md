@@ -1,20 +1,29 @@
-# Welcome to your Expo app 👋
+# Student Attendance Mobile App
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+This is an [Expo](https://expo.dev) app using Expo Router with file-based routing.
+
+## What users should expect
+
+When the app opens, users will see the authentication flow first. After logging in, the experience splits by role:
+
+- Students land on a tabbed experience with a home dashboard, attendance check-in, history, and account views.
+- Lecturers use a dedicated stack for class management, live session attendance, and reporting.
+
+Attendance features rely on device permissions and location services (including geofencing), and some auth flows may use biometric prompts where supported.
 
 ## Get started
 
 1. Install dependencies
 
-   ```bash
-   npm install
-   ```
+    ```bash
+    npm install
+    ```
 
 2. Start the app
 
-   ```bash
-   npx expo start
-   ```
+    ```bash
+    npx expo start
+    ```
 
 In the output, you'll find options to open the app in a
 
@@ -25,26 +34,87 @@ In the output, you'll find options to open the app in a
 
 You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
 
-## Get a fresh project
+## Project structure
 
-When you're ready, run:
-
-```bash
-npm run reset-project
+```text
+mobile-app/
+|-- app/                          # Expo Router file-based navigation
+|   |-- (auth)/
+|   |   |-- login.tsx             # Login screen
+|   |   |-- signup.tsx            # Signup screen
+|   |   `-- _layout.tsx
+|   |-- (tabs)/
+|   |   |-- _layout.tsx           # Bottom tab layout for students
+|   |   |-- index.tsx             # Home/dashboard screen
+|   |   |-- attendance.tsx        # Sign attendance screen (GPS trigger)
+|   |   |-- history.tsx           # Student attendance history
+|   |   `-- account.tsx           # Profile and settings
+|   |-- (lecturer)/
+|   |   |-- _layout.tsx           # Lecturer stack layout
+|   |   |-- index.tsx             # Lecturer dashboard
+|   |   |-- classes.tsx           # Manage classes and geofence zones
+|   |   |-- reports.tsx           # Generate and view reports
+|   |   `-- live.tsx              # Live attendance view
+|   |-- _layout.tsx               # Root layout
+|   `-- modal.tsx                 # Shared modal route
+|
+|-- components/
+|   |-- ui/
+|   |   |-- Button.tsx
+|   |   |-- Card.tsx
+|   |   |-- Badge.tsx
+|   |   `-- Input.tsx
+|   |-- attendance/
+|   |   |-- AttendanceButton.tsx  # Main GPS sign-in button
+|   |   |-- GeofenceStatus.tsx    # Shows if student is in range
+|   |   `-- AttendanceCard.tsx    # Individual attendance record
+|   |-- reports/
+|   |   |-- AttendanceChart.tsx   # Charts for reports
+|   |   |-- ReportTable.tsx       # Tabular attendance data
+|   |   `-- ExportButton.tsx      # Export actions
+|   `-- auth/
+|       |-- BiometricPrompt.tsx
+|       `-- LoginForm.tsx
+|
+|-- hooks/
+|   |-- useLocation.ts            # GPS + geofencing logic
+|   |-- useAuth.ts                # Auth state + biometric
+|   |-- useAttendance.ts          # Sign-in and records
+|   |-- useReports.ts             # Fetch and generate reports
+|   |-- use-color-scheme.ts
+|   |-- use-color-scheme.web.ts
+|   `-- use-theme-color.ts
+|
+|-- services/
+|   |-- api.ts                    # API client config
+|   |-- authService.ts            # Login and tokens
+|   |-- attendanceService.ts      # Attendance APIs
+|   |-- locationService.ts        # Location helpers
+|   `-- reportService.ts          # Report APIs
+|
+|-- store/                        # App state stores
+|   |-- authStore.ts
+|   |-- attendanceStore.ts
+|   `-- classStore.ts
+|
+|-- utils/
+|   |-- geofence.ts               # Geofence calculations
+|   |-- dateFormatter.tsx
+|   `-- permissions.ts            # Permissions helpers
+|
+|-- constants/
+|   |-- colors.ts
+|   `-- theme.ts
+|
+|-- assets/
+|   `-- images/
+|
+|-- scripts/
+|   `-- reset-project.js
+|
+|-- app.json
+|-- eslint.config.js
+|-- expo-env.d.ts
+|-- package.json
+`-- tsconfig.json
 ```
-
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
-
-## Learn more
-
-To learn more about developing your project with Expo, look at the following resources:
-
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
-
-## Join the community
-
-Join our community of developers creating universal apps.
-
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
